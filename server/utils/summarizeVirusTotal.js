@@ -9,6 +9,10 @@ function summarizeVirusTotal(data) {
   const results = attributes.results || {};
   const stats = attributes.stats || {};
 
+  if (results) {
+    // create an ob
+  }
+
   const totalEngines = Object.keys(results).length;
 
   const summary = {
