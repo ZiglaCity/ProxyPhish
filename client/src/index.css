@@ -23,12 +23,6 @@ body {
         sans-serif;
     line-height: 1.5;
 }
-/* 
-.cyber-card {
-  @apply bg-cyber-terminal border border-cyber-blue/40 rounded-md p-6 shadow-lg shadow-cyber-blue/5;
-  position: relative;
-  overflow: hidden;
-}
 
 .cyber-card::before {
   content: '';
@@ -40,6 +34,14 @@ body {
   background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
 }
 
+/* 
+.cyber-card {
+  @apply bg-cyber-terminal border border-cyber-blue/40 rounded-md p-6 shadow-lg shadow-cyber-blue/5;
+  position: relative;
+  overflow: hidden;
+}
+
+
 .cyber-input {
   @apply bg-cyber-terminal border border-cyber-muted rounded-md px-4 py-3 text-white shadow-sm focus:border-cyber-blue focus:ring-1 focus:ring-cyber-blue transition-all duration-200 outline-none;
 }
@@ -48,6 +50,7 @@ body {
   @apply bg-cyber-terminal border border-cyber-blue text-cyber-blue px-6 py-3 font-mono transition-all duration-200 hover:bg-cyber-blue hover:text-black hover:shadow-md hover:shadow-cyber-blue/20 focus:outline-none focus:ring-2 focus:ring-cyber-blue focus:ring-offset-2 focus:ring-offset-cyber-terminal disabled:opacity-50;
 }
 
+*/
 @keyframes pulseglow {
   0%, 100% {
     filter: drop-shadow(0 0 5px currentColor);
@@ -59,7 +62,7 @@ body {
 
 .animate-pulse-glow {
   animation: pulseglow 2s infinite ease-in-out;
-} */
+} 
 
 /* Cyber colors utility classes */
 .text-cyber-green {
