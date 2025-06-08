@@ -2,7 +2,7 @@ import { Shield, AlertTriangle, Lock } from 'lucide-react';
 
 const AboutSection = () => {
     return (
-        <div className="cyber-card mt-20 border border-cyber-blue m-10 border-t-2 p-4">
+        <div className="cyber-card border border-cyber-blue m-10 border-t-2 p-4">
             <h2 className="text-2xl font-mono text-cyber-blue mb-6 text-center p-4">About This Tool</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

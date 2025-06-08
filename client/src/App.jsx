@@ -2,6 +2,7 @@ import { useState } from 'react';
 import NavBar from './components/NavBar';
 import AboutSection  from './components/AboutSection';
 import SearchBox from './components/SearchBox';
+import Info from './components/Info'
 const BACKEND_URL = 'http://localhost:5000/';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <>
             <NavBar />
             <SearchBox onSearch={Search} loading={loading}/>
+            <Info />
             <AboutSection />    
         </>
     );
