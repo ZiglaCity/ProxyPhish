@@ -22,29 +22,33 @@ async function askOpenAI(url) {
                 // | 4 - 6         | Suspicious Signs   | ⚠️ Warning  |
                 // | 7 - 10        | High Risk Phishing | ❌ Dangerous | `;
 
-  try {
-    console.log(process.env.OPENAI_API_KEY)
-    const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-        model: "gpt-3.5-turbo",
-        messages: [
+    try {
+        console.log(process.env.OPENAI_API_KEY);
+        const response = await axios.post(
+            'https://api.openai.com/v1/chat/completions',
             {
-            role: "user",
-            content: prompt
-            }
-        ],
-        temperature: 0.2,
-        max_tokens: 100
-        }, {
-        headers: {
-            "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
-            "Content-Type": "application/json"
-        }
-        });
-        console.log(process.env.OPENAI_API_KEY)
+                model: 'gpt-3.5-turbo',
+                messages: [
+                    {
+                        role: 'user',
+                        content: prompt,
+                    },
+                ],
+                temperature: 0.2,
+                max_tokens: 100,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+                    'Content-Type': 'application/json',
+                },
+            },
+        );
+        console.log(process.env.OPENAI_API_KEY);
         return response.data.choices[0].message.content;
     } catch (error) {
-        console.error("OpenAI error:", error.response?.data || error.message);
-        return "OpenAI failed to respond. Proceeded with rule-based logic only.";
+        console.error('OpenAI error:', error.response?.data || error.message);
+        return 'OpenAI failed to respond. Proceeded with rule-based logic only.';
     }
 }
 
