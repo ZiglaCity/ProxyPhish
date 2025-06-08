@@ -2,8 +2,8 @@ import { Shield, AlertTriangle, Lock } from 'lucide-react';
 
 const AboutSection = () => {
     return (
-        <div className="cyber-card mt-10">
-            <h2 className="text-2xl font-mono text-cyber-blue mb-6">About This Tool</h2>
+        <div className="cyber-card mt-20 border border-cyber-blue m-10 border-t-2 p-4">
+            <h2 className="text-2xl font-mono text-cyber-blue mb-6 text-center p-4">About This Tool</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="flex flex-col items-center text-center">
@@ -42,7 +42,7 @@ const AboutSection = () => {
                     <p className="text-sm text-gray-300">
                         We analyze URLs using multiple detection methods including
                         blacklists, heuristic analysis, machine learning and deep learning
-                        algorithms written by myself😁.
+                        algorithms written by myself.
                     </p>
                 </div>
             </div>

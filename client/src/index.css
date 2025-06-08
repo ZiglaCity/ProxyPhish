@@ -1,0 +1,106 @@
+@import 'tailwindcss';
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+:root {
+    --cyber-green: #00ff41;
+    --cyber-blue: #0abdc6;
+    --cyber-warning: #ffcc00;
+    --cyber-danger: #ff2a6d;
+    --cyber-muted: #818eab;
+    --cyber-terminal: #101116;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+    line-height: 1.5;
+}
+/* 
+.cyber-card {
+  @apply bg-cyber-terminal border border-cyber-blue/40 rounded-md p-6 shadow-lg shadow-cyber-blue/5;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
+}
+
+.cyber-input {
+  @apply bg-cyber-terminal border border-cyber-muted rounded-md px-4 py-3 text-white shadow-sm focus:border-cyber-blue focus:ring-1 focus:ring-cyber-blue transition-all duration-200 outline-none;
+}
+
+.cyber-button {
+  @apply bg-cyber-terminal border border-cyber-blue text-cyber-blue px-6 py-3 font-mono transition-all duration-200 hover:bg-cyber-blue hover:text-black hover:shadow-md hover:shadow-cyber-blue/20 focus:outline-none focus:ring-2 focus:ring-cyber-blue focus:ring-offset-2 focus:ring-offset-cyber-terminal disabled:opacity-50;
+}
+
+@keyframes pulseglow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+  50% {
+    filter: drop-shadow(0 0 15px currentColor);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseglow 2s infinite ease-in-out;
+} */
+
+/* Cyber colors utility classes */
+.text-cyber-green {
+    color: var(--cyber-green);
+}
+.text-cyber-blue {
+    color: var(--cyber-blue);
+}
+.text-cyber-warning {
+    color: var(--cyber-warning);
+}
+.text-cyber-danger {
+    color: var(--cyber-danger);
+}
+.text-cyber-muted {
+    color: var(--cyber-muted);
+}
+.bg-cyber-terminal {
+    background-color: var(--cyber-terminal);
+}
+.border-cyber-green {
+    border-color: var(--cyber-green);
+}
+.border-cyber-blue {
+    border-color: var(--cyber-blue);
+}
+.border-cyber-warning {
+    border-color: var(--cyber-warning);
+}
+.border-cyber-danger {
+    border-color: var(--cyber-danger);
+}
+.stroke-cyber-green {
+    stroke: var(--cyber-green);
+}
+.stroke-cyber-blue {
+    stroke: var(--cyber-blue);
+}
+.stroke-cyber-warning {
+    stroke: var(--cyber-warning);
+}
+.stroke-cyber-danger {
+    stroke: var(--cyber-danger);
+}
