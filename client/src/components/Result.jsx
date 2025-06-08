@@ -1,14 +1,19 @@
+import ThreatStatsCircle from "./ThreatStatsCircle";
+
 function Result({ results }) {
     let data = results?.data?.data?.attributes?.results || [] ;
     const analysis = results?.result;
     console.log("The analysis: " , analysis);
-    if (data) {
-        data = Object.values(data) 
+    if (!data) {
+        //return a 404 link not found here....
     }    
+    data = Object.values(data) 
     console.log("The data in result", data);
 
     return (
         <div className="cyber-card overflow-auto m-5 md:m-10">
+        <ThreatStatsCircle analysis={analysis}/>
+
             <h3 className="text-xl font-mono text-cyber-blue mb-4">Engine Results</h3>
             <table className="w-full text-sm">
                 <thead>

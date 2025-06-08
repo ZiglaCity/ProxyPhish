@@ -30,7 +30,7 @@ function App() {
             return res.json();
         })
         .then(data => {
-            if( !data){
+            if( !data || !data?.data?.data?.attributes?.results){
                 // create and return the 404 page later here (Sorry No results found for ${url}) ....
                 return
             }
