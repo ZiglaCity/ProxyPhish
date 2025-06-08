@@ -8,7 +8,7 @@ function Result({ results }) {
     console.log("The data in result", data);
 
     return (
-        <div className="cyber-card overflow-auto m-10">
+        <div className="cyber-card overflow-auto m-5 md:m-10">
             <h3 className="text-xl font-mono text-cyber-blue mb-4">Engine Results</h3>
             <table className="w-full text-sm">
                 <thead>
