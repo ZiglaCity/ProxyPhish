@@ -1,9 +1,20 @@
 import React from 'react';
 import { CheckCircle, AlertTriangle, Clock } from 'lucide-react';
+import {finalizeStatsCount}  from '../lib/utils'
 
-const VerdictCard = ({ verdict, reason }) => {
-    const isSafe = verdict === 'safe';
+const VerdictCard = ({ reason, analysis}) => {
+    
+    const { suspiciousCount, totalCount } = finalizeStatsCount(analysis);
+
+    const percentage = totalCount > 0 ? (suspiciousCount / totalCount) * 100 : 0;
+    const getVedict = () => {
+        if (percentage < 2) return 'safe';
+        return "Zigla says its not safe, what will you do??"
+    };
+
+    const isSafe = getVedict() === 'safe';
     const scannedAt = new Date();
+
     
     return (
         <div className={`cyber-card ${isSafe ? 'border-cyber-green' : 'border-cyber-warning'} mb-6 mr-10 ml-5`}>

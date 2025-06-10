@@ -16,7 +16,7 @@ function Result({ results }) {
         <div className="cyber-card overflow-auto m-5 md:m-10">
             <h3 className="text-xl font-mono text-cyber-blue mb-1 md:text-center">Threat Analysis</h3>
             <div className="flex md:justify-center md:items-center md:gap-40">
-                <VerdictCard verdict={"safe"} reason={""} />
+                <VerdictCard reason={""} analysis={analysis} />
                 <ThreatStatsCircle analysis={analysis}/>
             </div>
             <h3 className="text-xl font-mono text-cyber-blue mb-2 md:text-center">Engine Results</h3>
