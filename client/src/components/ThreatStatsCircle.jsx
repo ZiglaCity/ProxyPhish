@@ -9,22 +9,21 @@ const ThreatStatsCircle = ({ analysis }) => {
     const strokeDashoffset = circumference - (percentage / 100) * circumference;
     
     const getColor = () => {
-        if (percentage < 10) return 'text-cyber-green';
-        if (percentage < 40) return 'text-cyber-blue';
-        if (percentage < 70) return 'text-cyber-warning';
+        if (percentage < 2) return 'text-cyber-green';
+        if (percentage < 10) return 'text-cyber-blue';
+        if (percentage < 50) return 'text-cyber-warning';
         return 'text-cyber-danger';
     };
     
     const getStrokeColor = () => {
-        if (percentage < 10) return 'stroke-cyber-green';
-        if (percentage < 40) return 'stroke-cyber-blue';
-        if (percentage < 70) return 'stroke-cyber-warning';
+        if (percentage < 2) return 'stroke-cyber-green';
+        if (percentage < 10) return 'stroke-cyber-blue';
+        if (percentage < 50) return 'stroke-cyber-warning';
         return 'stroke-cyber-danger';
     };
     
     return (
         <div className="cyber-card flex flex-col items-center">
-            <h3 className="text-xl font-mono text-cyber-blue mb-4">Threat Analysis</h3>
             <div className="relative w-52 h-52 flex items-center justify-center">
             <svg className="w-full h-full" viewBox="0 0 200 200">
                 <circle
