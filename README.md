@@ -4,7 +4,7 @@
 
 ---
 
-##  What It Does
+## What It Does
 
 - Accepts any URL from the user.
 - Sends the URL to a backend API for validation.
@@ -15,7 +15,7 @@
 
 ---
 
-##  Built With
+## Built With
 
 - **Frontend:** React, Tailwind CSS
 - **Backend:** Node.js, Express
@@ -24,15 +24,15 @@
 
 ---
 
-##  Preview
+## Preview
 
-![ProxyPhish UI](https://dummy.ziglacity.dev/assets/proxyphish-screenshot.png)
+![Image](https://github.com/user-attachments/assets/93e7f69e-1868-4345-aca3-679961e49578)
 
-![ProxyPhish UI](https://dummy.ziglacity.dev/assets/proxyphish-screenshot2.png)
+![Image](https://github.com/user-attachments/assets/e5bdb7c9-1f64-419c-ae6f-25990324040b)
 
 ---
 
-##  Live Demo
+## Live Demo
 
 [https://proxyphish.ziglacity.dev](https://proxyphish.ziglacity.dev)  
 _The app is yet to be hosted...._
@@ -41,36 +41,41 @@ _The app is yet to be hosted...._
 
 ## Prerequisites
 
-*   Node.js (v20.x+) & npm
-*   Git
+- Node.js (v20.x+) & npm
+- Git
 
 ---
 
 ## Running Locally
 
 1.  **Clone:**
+
     ```bash
     git clone https://github.com/ZiglaCity/ProxyPhish.git
     cd ProxyPhish
     ```
 
 2.  **Install frontend dependencies:**
+
     ```bash
     cd client
     npm install
     ```
 
 3.  **Install backend dependencies:**
+
     ```bash
     cd ../server
     npm install
     ```
 
 4.  **Environment (.env):**
-    *   Create `.env` files in both frontend and backend with the required variables.
-    *   Reach out to [ME](https://github.com/ZiglaCity) for the development environment variables and paste them into the `.env`s.
 
-5. **Run:**
+    - Create `.env` files in both frontend and backend with the required variables.
+    - Reach out to [ME](https://github.com/ZiglaCity) for the development environment variables and paste them into the `.env`s.
+
+5.  **Run:**
+
     ```bash
     # In backend
     npm run dev
@@ -82,6 +87,7 @@ _The app is yet to be hosted...._
 ---
 
 ## About the Developer
+
 Developed by [ME](https://github.com/ZiglaCity) as part of a cybersecurity project to help individuals stay safe online.
 
 ---
