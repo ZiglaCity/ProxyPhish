@@ -16,12 +16,12 @@ exports.checkUrl = async (req, res) => {
     if (data) {
       const { summary, formatedData } = summarizeVirusTotal(data);
       const result = summary;
-
-      //make sure the summarized data here... contains rank, final verdict, and reasons...(probably 70/ 80 flagged as safe)
-      //also instead of just send the data with a bunch of the results... refactore the results starting from the milicous, suspicios, good, unknown...
+      console.log(formatedData);
       return res.json({ data, result, formatedData });
     }
     try {
+      //for now lets avoid other alternatives...
+      return res.status(400).json(data);
       openAIReason = await askOpenAI(url);
       if (!openAIReason || !openAIReason.rank) {
         throw new Error("Invalid response from OpenAI");

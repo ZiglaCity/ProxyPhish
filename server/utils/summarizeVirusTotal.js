@@ -22,8 +22,7 @@ function summarizeVirusTotal(data) {
     (res) => res.result != "malicious" && res.result != "phishing"
   );
 
-  maliciousData.push(cleanData);
-  formatedData = maliciousData;
+  formatedData = maliciousData.concat(cleanData);
   //   console.log("Data::", data);
 
   const totalEngines = Object.keys(results).length;

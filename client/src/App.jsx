@@ -6,11 +6,13 @@ import Info from './components/Info'
 import LoadingSpinner from './components/LoadingSpinner';
 import Result from './components/Result';
 const BACKEND_URL = 'http://localhost:5000/';
+import NoResult from './components/NoResult';
 
 function App() {
     const [loading, setIsLoading] = useState(false);
     const [hasResult, setHasResut] = useState(false);
     const [results, setResults] = useState(null);
+    const [searchedWithoutResult, setSWR] = useState(false);
 
     function Search(url){
         setIsLoading(true);
@@ -27,28 +29,36 @@ function App() {
                 setIsLoading(false);
                 throw new Error("Request failed");
             }
+            console.log("recieved the res")
             return res.json();
         })
-        .then(data => {
-            if( !data || !data?.data?.data?.attributes?.results){
-                // create and return the 404 page later here (Sorry No results found for ${url}) ....
-                return
+        .then(data=> {
+            if( !data || !data?.data?.data?.attributes?.results || !data?.formatedData || !data?.formatedData.length === 0){
+                console.log("No data found from the backend")
+                setIsLoading(false);
+                setSWR(true);
+                setHasResut(false);
+                return 
             }
             console.log("The result:", data);
             setResults(data);
             setHasResut(true);
             setIsLoading(false);
+            setSWR(false);
         })
         .catch(error => {
             console.log("Error fetching data:", error);
             setIsLoading(false);
+            setHasResut(false);
+            setSWR(false);
         });
     }
     return (
         <>
             <NavBar />
             <SearchBox onSearch={Search} loading={loading}/>
-            { loading ? <LoadingSpinner /> : hasResult ? <Result results={results} /> : <Info /> }
+            { searchedWithoutResult && <NoResult />}
+            {loading ? <LoadingSpinner /> : hasResult ? <Result results={results} /> : <Info /> }
             <AboutSection />    
         </>
     );
