@@ -1,16 +1,16 @@
 import ThreatStatsCircle from "./ThreatStatsCircle";
 import VerdictCard from "./VerdictCard";
 
-function Result({ results }) {
+function Result({ results}) {
     let data = results?.data?.data?.attributes?.results || [] ;
+    const { result, formatedData } = results;
     const analysis = results?.result;
     console.log("The analysis: " , analysis);
-    if (!data || data.length == 0) {
-        //return a 404 link not found here....
-        return <h1>NO DATA FOUNd</h1>
-    }    
+   
     data = Object.values(data) 
-    console.log("The data in result", data);
+    console.log("This is the first data in result;", data)
+    data = formatedData;
+    console.log("The len data in result", data.length);
 
     return (
         <div className="cyber-card overflow-auto m-5 md:m-10">
