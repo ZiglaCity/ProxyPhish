@@ -1,8 +1,14 @@
 import { scanURL } from './virusTotal';
 import { summarizeVirusTotal } from './summarize';
 import { ziglaAnalytics } from './analyzer';
+import { getCached, setCache } from './cache';
 
 export async function checkUrl(url) {
+    const cached = getCached(url);
+    if (cached) {
+        return { ...cached, fromCache: true };
+    }
+
     const data = await scanURL(url);
 
     if (!data) {
@@ -11,9 +17,10 @@ export async function checkUrl(url) {
 
     const { summary, formatedData } = summarizeVirusTotal(data);
 
+    let result;
     if (!formatedData || formatedData.length === 0) {
         const fallback = ziglaAnalytics(url);
-        return {
+        result = {
             data,
             result: {
                 verdict: fallback.rankBoost >= 3 ? 'Suspicious' : 'Likely Safe',
@@ -21,11 +28,14 @@ export async function checkUrl(url) {
             },
             formatedData: [],
         };
+    } else {
+        result = {
+            data,
+            result: summary,
+            formatedData,
+        };
     }
 
-    return {
-        data,
-        result: summary,
-        formatedData,
-    };
+    setCache(url, result);
+    return result;
 }

@@ -40,7 +40,9 @@ function App() {
                 return;
             }
 
-            toast.success('URL analysis complete');
+            toast.success(
+                data.fromCache ? 'Results loaded from cache' : 'URL analysis complete',
+            );
             setResults(data);
             setHasResult(true);
             setSWR(false);
