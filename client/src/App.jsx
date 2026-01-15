@@ -7,8 +7,7 @@ import Info from './components/Info';
 import LoadingSpinner from './components/LoadingSpinner';
 import Result from './components/Result';
 import NoResult from './components/NoResult';
-
-const BACKEND_URL = 'http://localhost:5000/';
+import { checkUrl } from './api';
 
 function App() {
     const [loading, setIsLoading] = useState(false);
@@ -16,7 +15,7 @@ function App() {
     const [results, setResults] = useState(null);
     const [searchedWithoutResult, setSWR] = useState(false);
 
-    function Search(url) {
+    async function Search(url) {
         if (!url) {
             toast.error('Please enter a valid URL');
             return;
@@ -26,45 +25,32 @@ function App() {
         setSWR(false);
         setHasResult(false);
 
-        fetch(`${BACKEND_URL}api/check-url`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ url }),
-        })
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error(`Request failed with status ${res.status}`);
-                }
-                return res.json();
-            })
-            .then((data) => {
-                if (
-                    !data ||
-                    !data?.data?.data?.attributes?.results ||
-                    !data?.formatedData ||
-                    data?.formatedData.length === 0
-                ) {
-                    toast.error('No analysis data found for this URL');
-                    setSWR(true);
-                    setHasResult(false);
-                    setIsLoading(false);
-                    return;
-                }
-                toast.success('URL analysis complete');
-                setResults(data);
-                setHasResult(true);
-                setSWR(false);
-            })
-            .catch((error) => {
-                toast.error(error.message || 'Failed to analyze URL');
+        try {
+            const data = await checkUrl(url);
+
+            if (
+                !data ||
+                !data?.data?.data?.attributes?.results ||
+                !data?.formatedData ||
+                data?.formatedData.length === 0
+            ) {
+                toast.error('No analysis data found for this URL');
+                setSWR(true);
                 setHasResult(false);
-                setSWR(false);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+                return;
+            }
+
+            toast.success('URL analysis complete');
+            setResults(data);
+            setHasResult(true);
+            setSWR(false);
+        } catch (error) {
+            toast.error(error.message || 'Failed to analyze URL');
+            setHasResult(false);
+            setSWR(false);
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     return (
