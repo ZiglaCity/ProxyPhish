@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
+import toast from "react-hot-toast";
 
 const SearchBox = ({ onSearch, loading }) => {
     const [url, setUrl] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!url.trim()) return;
+        if (!url.trim()) {
+            toast.error("Please enter a URL to analyze");
+            return;
+        }
         onSearch(url.trim());
     };
 
