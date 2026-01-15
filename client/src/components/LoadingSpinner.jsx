@@ -6,7 +6,7 @@ const LoadingSpinner = () => {
             aria-live="polite"
         >
             <div className="relative w-14 h-14 md:w-16 md:h-16">
-                <div className="w-14 h-14 md:w-16 md:h-16 border-4 border-gray-700 rounded-full"></div>
+                <div className="w-14 h-14 md:w-16 md:h-16 border-4 border-cyber-border rounded-full"></div>
                 <div className="w-14 h-14 md:w-16 md:h-16 border-4 border-t-cyber-green border-transparent rounded-full absolute top-0 left-0 animate-spin"></div>
             </div>
             <div className="mt-4 font-mono text-cyber-green text-base md:text-lg">

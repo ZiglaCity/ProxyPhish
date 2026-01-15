@@ -30,7 +30,7 @@ const ThreatStatsCircle = ({ analysis }) => {
                         cy="100"
                         r={radius}
                         fill="transparent"
-                        stroke="#384252"
+                        stroke="#2a2a35"
                         strokeWidth="12"
                     />
                     <circle
@@ -50,7 +50,7 @@ const ThreatStatsCircle = ({ analysis }) => {
                     <div className={`text-2xl md:text-3xl font-bold ${getColor()}`}>
                         {suspiciousCount}/{totalCount}
                     </div>
-                    <div className="text-xs md:text-sm text-gray-400 mt-1 px-2">
+                    <div className="text-xs md:text-sm text-cyber-muted mt-1 px-2">
                         engines flagged
                     </div>
                 </div>

@@ -9,13 +9,15 @@
     --cyber-blue: #0abdc6;
     --cyber-warning: #ffcc00;
     --cyber-danger: #ff2a6d;
-    --cyber-muted: #818eab;
+    --cyber-muted: #6b7280;
     --cyber-terminal: #101116;
+    --cyber-dark: #1a1a1f;
+    --cyber-border: #2a2a35;
 }
 
 body {
-    background-color: black;
-    color: white;
+    background-color: #000;
+    color: #fff;
     font-family:
         system-ui,
         -apple-system,
@@ -114,10 +116,16 @@ body {
 .border-cyber-muted {
     border-color: var(--cyber-muted);
 }
+.bg-cyber-dark {
+    background-color: var(--cyber-dark);
+}
+.border-cyber-border {
+    border-color: var(--cyber-border);
+}
 
 .cyber-card {
     background-color: var(--cyber-terminal);
-    border: 1px solid rgba(10, 189, 198, 0.4);
+    border: 1px solid var(--cyber-border);
     border-radius: 0.375rem;
     padding: 1.5rem;
     position: relative;

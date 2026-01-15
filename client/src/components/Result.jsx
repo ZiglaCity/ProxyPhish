@@ -21,7 +21,7 @@ function Result({ results }) {
             <div className="overflow-x-auto -mx-4 md:mx-0">
                 <table className="w-full text-xs md:text-sm min-w-[500px]">
                     <thead>
-                        <tr className="border-b border-cyber-muted">
+                        <tr className="border-b border-cyber-border">
                             <th className="text-left py-2 px-3 font-mono text-cyber-green">
                                 Result
                             </th>
@@ -40,7 +40,7 @@ function Result({ results }) {
                         {data.map((item, index) => (
                             <tr
                                 key={index}
-                                className="border-b border-gray-700 hover:bg-gray-900/50"
+                                className="border-b border-cyber-border hover:bg-cyber-dark"
                             >
                                 <td className="py-2 px-3 font-mono">
                                     <span
@@ -57,13 +57,13 @@ function Result({ results }) {
                                         {item.result}
                                     </span>
                                 </td>
-                                <td className="py-2 px-3 font-mono text-gray-300">
+                                <td className="py-2 px-3 font-mono text-cyber-muted">
                                     {item.category}
                                 </td>
-                                <td className="py-2 px-3 text-gray-300">
+                                <td className="py-2 px-3 text-cyber-muted">
                                     {item.engine_name}
                                 </td>
-                                <td className="py-2 px-3 font-mono text-xs text-gray-400">
+                                <td className="py-2 px-3 font-mono text-xs text-cyber-muted">
                                     {item.method}
                                 </td>
                             </tr>
