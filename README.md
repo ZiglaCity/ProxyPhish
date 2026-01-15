@@ -43,7 +43,7 @@
 
 ## Live Demo
 
-[https://proxyphish.ziglacity.dev](https://proxyphish.ziglacity.dev)
+[https://proxyphish.vercel.app/](https://proxyphish.vercel.app/)
 
 ---
 
