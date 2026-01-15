@@ -1,26 +1,35 @@
 # ProxyPhish
 
-**ProxyPhish** is a lightweight, fast, and reliable tool that checks whether a given URL is legitimate or a potential phishing trap. Built with a custom backend and a clean React + Tailwind frontend, ProxyPhish provides real-time scanning using multiple security engines.
+**ProxyPhish** is a lightweight, fast, and reliable tool that checks whether a given URL is legitimate or a potential phishing trap. Built with React and Tailwind CSS, ProxyPhish provides real-time scanning using the VirusTotal API.
 
 ---
 
-## What It Does
+## Version 1.0 (Current)
 
-- Accepts any URL from the user.
-- Sends the URL to a backend API for validation.
-- Checks for phishing patterns and threat intelligence.
-- Displays scan results clearly to the user.
-- Gracefully handles empty or invalid results.
-- Designed with accessibility and dark mode support.
+> **Note:** Version 1.0 operates entirely on the client-side. Due to deployment constraints with managing separate frontend and backend services, the current implementation calls the VirusTotal API directly from the browser. This eliminates the need for a dedicated server and simplifies deployment to a single static hosting service.
+>
+> The `/server` directory contains experimental backend code for future versions that may include additional features like rate limiting, API key protection, and OpenAI-powered analysis.
 
 ---
 
-## Built With
+## Features
 
-- **Frontend:** React, Tailwind CSS
-- **Backend:** Node.js, Express
-- **Icons:** Lucide
-- **Deployment:** VPS (Nginx), GitHub Actions
+- Scan any URL for phishing and malware threats
+- Real-time results from 70+ security engines via VirusTotal
+- In-memory caching to avoid redundant API calls (30-minute TTL)
+- Clean threat analysis dashboard with visual indicators
+- Mobile-friendly responsive design
+- Toast notifications for user feedback
+- Dark cyber-themed UI
+
+---
+
+## Tech Stack
+
+- **Frontend:** React 19, Tailwind CSS 4, Vite
+- **API:** VirusTotal API v3
+- **Icons:** Lucide React
+- **Notifications:** React Hot Toast
 
 ---
 
@@ -34,66 +43,96 @@
 
 ## Live Demo
 
-[https://proxyphish.ziglacity.dev](https://proxyphish.ziglacity.dev)  
-_The app is yet to be hosted...._
+[https://proxyphish.ziglacity.dev](https://proxyphish.ziglacity.dev)
 
 ---
 
-## Prerequisites
+## Getting Started
 
-- Node.js (v20.x+) & npm
-- Git
+### Prerequisites
 
----
+- Node.js (v20+)
+- VirusTotal API Key (free at [virustotal.com](https://www.virustotal.com))
 
-## Running Locally
+### Installation
 
-1.  **Clone:**
+1. **Clone the repository:**
 
-    ```bash
-    git clone https://github.com/ZiglaCity/ProxyPhish.git
-    cd ProxyPhish
-    ```
+   ```bash
+   git clone https://github.com/ZiglaCity/ProxyPhish.git
+   cd ProxyPhish/client
+   ```
 
-2.  **Install frontend dependencies:**
+2. **Install dependencies:**
 
-    ```bash
-    cd client
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
-3.  **Install backend dependencies:**
+3. **Configure environment:**
 
-    ```bash
-    cd ../server
-    npm install
-    ```
+   Create a `.env` file in the `client` directory:
 
-4.  **Environment (.env):**
+   ```
+   VITE_VIRUSTOTAL_API_KEY=your_api_key_here
+   ```
 
-    - Create `.env` files in both frontend and backend with the required variables.
-    - Reach out to [ME](https://github.com/ZiglaCity) for the development environment variables and paste them into the `.env`s.
+4. **Run the development server:**
 
-5.  **Run:**
+   ```bash
+   npm run dev
+   ```
 
-    ```bash
-    # In backend
-    npm run dev
+5. **Open in browser:**
 
-    # In frontend (in a separate terminal)
-    npm run dev
-    ```
+   Navigate to `http://localhost:5173`
 
 ---
 
-## About the Developer
+## Project Structure
 
-Developed by [ME](https://github.com/ZiglaCity) as part of a cybersecurity project to help individuals stay safe online.
+```
+ProxyPhish/
+├── client/
+│   ├── src/
+│   │   ├── api/
+│   │   │   ├── index.js        # Main API entry point
+│   │   │   ├── virusTotal.js   # VirusTotal API integration
+│   │   │   ├── summarize.js    # Response processing
+│   │   │   ├── analyzer.js     # Fallback URL analysis
+│   │   │   └── cache.js        # In-memory caching
+│   │   ├── components/         # React components
+│   │   ├── lib/                # Utility functions
+│   │   ├── App.jsx             # Main application
+│   │   └── index.css           # Global styles
+│   ├── .env.example            # Environment template
+│   └── package.json
+└── server/                     # Future backend (not used in v1)
+```
+
+---
+
+## API Rate Limits
+
+VirusTotal free tier allows 4 requests per minute. The in-memory cache helps reduce API calls by storing results for 30 minutes.
+
+---
+
+## Roadmap
+
+- [ ] Deploy backend for API key protection
+- [ ] Add URL history/bookmarks
+- [ ] Implement OpenAI-powered threat explanations
+- [ ] Add browser extension
+
+---
+
+## Author
+
+Developed by [ZiglaCity](https://github.com/ZiglaCity)
 
 ---
 
 ## License
 
-MIT
-
-**This project is open-source under the MIT License.**
+MIT License - see [LICENSE](LICENSE) for details.
