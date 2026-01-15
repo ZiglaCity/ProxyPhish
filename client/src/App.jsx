@@ -14,8 +14,9 @@ function App() {
     const [hasResult, setHasResult] = useState(false);
     const [results, setResults] = useState(null);
     const [searchedWithoutResult, setSWR] = useState(false);
+    const [lastSearchedUrl, setLastSearchedUrl] = useState('');
 
-    async function Search(url) {
+    async function Search(url, forceRefresh = false) {
         if (!url) {
             toast.error('Please enter a valid URL');
             return;
@@ -24,9 +25,10 @@ function App() {
         setIsLoading(true);
         setSWR(false);
         setHasResult(false);
+        setLastSearchedUrl(url);
 
         try {
-            const data = await checkUrl(url);
+            const data = await checkUrl(url, forceRefresh);
 
             if (
                 !data ||
@@ -52,6 +54,12 @@ function App() {
             setSWR(false);
         } finally {
             setIsLoading(false);
+        }
+    }
+
+    function handleRefresh() {
+        if (lastSearchedUrl) {
+            Search(lastSearchedUrl, true);
         }
     }
 
@@ -82,11 +90,13 @@ function App() {
             />
             <NavBar />
             <SearchBox onSearch={Search} loading={loading} />
-            {searchedWithoutResult && <NoResult />}
+            {searchedWithoutResult && (
+                <NoResult onRefresh={handleRefresh} loading={loading} />
+            )}
             {loading ? (
                 <LoadingSpinner />
             ) : hasResult ? (
-                <Result results={results} />
+                <Result results={results} onRefresh={handleRefresh} loading={loading} />
             ) : (
                 <Info />
             )}

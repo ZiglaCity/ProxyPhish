@@ -1,9 +1,13 @@
 import { scanURL } from './virusTotal';
 import { summarizeVirusTotal } from './summarize';
 import { ziglaAnalytics } from './analyzer';
-import { getCached, setCache } from './cache';
+import { getCached, setCache, clearCacheForUrl } from './cache';
 
-export async function checkUrl(url) {
+export async function checkUrl(url, forceRefresh = false) {
+    if (forceRefresh) {
+        clearCacheForUrl(url);
+    }
+
     const cached = getCached(url);
     if (cached) {
         return { ...cached, fromCache: true };

@@ -1,16 +1,29 @@
+import { RefreshCw } from 'lucide-react';
 import ThreatStatsCircle from './ThreatStatsCircle';
 import VerdictCard from './VerdictCard';
 
-function Result({ results }) {
-    const { formatedData } = results;
+function Result({ results, onRefresh, loading }) {
+    const { formatedData, fromCache } = results;
     const analysis = results?.result;
     const data = formatedData || [];
 
     return (
         <div className="cyber-card m-4 md:m-10">
-            <h3 className="text-lg md:text-xl font-mono text-cyber-blue mb-4 text-center">
-                Threat Analysis
-            </h3>
+            <div className="flex justify-between items-center mb-4">
+                <h3 className="text-lg md:text-xl font-mono text-cyber-blue">
+                    Threat Analysis
+                </h3>
+                {fromCache && (
+                    <button
+                        onClick={onRefresh}
+                        disabled={loading}
+                        className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono text-cyber-blue border border-cyber-blue rounded hover:bg-cyber-blue hover:text-black transition disabled:opacity-50"
+                    >
+                        <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
+                        Rescan
+                    </button>
+                )}
+            </div>
             <div className="flex flex-col md:flex-row md:justify-center md:items-center gap-4 md:gap-16 mb-6">
                 <VerdictCard analysis={analysis} />
                 <ThreatStatsCircle analysis={analysis} />

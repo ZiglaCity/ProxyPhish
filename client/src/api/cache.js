@@ -27,6 +27,11 @@ export function clearCache() {
     cache.clear();
 }
 
+export function clearCacheForUrl(url) {
+    const normalizedUrl = normalizeUrl(url);
+    cache.delete(normalizedUrl);
+}
+
 function normalizeUrl(url) {
     try {
         const parsed = new URL(url.startsWith('http') ? url : `https://${url}`);
