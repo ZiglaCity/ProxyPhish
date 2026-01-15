@@ -1,3 +1,9 @@
 {
-  "framework": "vite"
+    "framework": "vite",
+    "rewrites": [
+        {
+            "source": "/api/:path*",
+            "destination": "/api/:path*"
+        }
+    ]
 }
