@@ -6,9 +6,9 @@
 
 ## Version 1.0 (Current)
 
-> **Note:** Version 1.0 operates entirely on the client-side. Due to deployment constraints with managing separate frontend and backend services, the current implementation calls the VirusTotal API directly from the browser. This eliminates the need for a dedicated server and simplifies deployment to a single static hosting service.
+> **Note:** Version 1.0 uses a Vercel serverless function to proxy requests to the VirusTotal API. This approach keeps the API key secure on the server while avoiding CORS issues that occur when calling external APIs directly from the browser.
 >
-> The `/server` directory contains experimental backend code for future versions that may include additional features like rate limiting, API key protection, and OpenAI-powered analysis.
+> The `/server` directory contains experimental backend code for future versions that may include additional features like rate limiting and OpenAI-powered analysis.
 
 ---
 
@@ -17,6 +17,7 @@
 - Scan any URL for phishing and malware threats
 - Real-time results from 70+ security engines via VirusTotal
 - In-memory caching to avoid redundant API calls (30-minute TTL)
+- Rescan functionality for cached or failed results
 - Clean threat analysis dashboard with visual indicators
 - Mobile-friendly responsive design
 - Toast notifications for user feedback
@@ -27,6 +28,7 @@
 ## Tech Stack
 
 - **Frontend:** React 19, Tailwind CSS 4, Vite
+- **Backend:** Vercel Serverless Functions
 - **API:** VirusTotal API v3
 - **Icons:** Lucide React
 - **Notifications:** React Hot Toast
@@ -43,7 +45,7 @@
 
 ## Live Demo
 
-[https://proxyphish.vercel.app/](https://proxyphish.vercel.app/)
+[https://proxyphish.vercel.app](https://proxyphish.vercel.app)
 
 ---
 
@@ -54,7 +56,7 @@
 - Node.js (v20+)
 - VirusTotal API Key (free at [virustotal.com](https://www.virustotal.com))
 
-### Installation
+### Local Development
 
 1. **Clone the repository:**
 
@@ -74,6 +76,7 @@
    Create a `.env` file in the `client` directory:
 
    ```
+   VITE_ENV=local
    VITE_VIRUSTOTAL_API_KEY=your_api_key_here
    ```
 
@@ -87,6 +90,19 @@
 
    Navigate to `http://localhost:5173`
 
+### Production Deployment (Vercel)
+
+1. **Set root directory** to `client` in Vercel dashboard
+
+2. **Add environment variable:**
+
+   - Name: `VIRUSTOTAL_API_KEY`
+   - Value: your API key
+
+3. **Deploy** - Vercel will automatically build and deploy
+
+> **Note:** In production, do not set `VITE_ENV` or set it to `production`. The app will use the serverless function at `/api/scan` to proxy requests.
+
 ---
 
 ## Project Structure
@@ -94,6 +110,8 @@
 ```
 ProxyPhish/
 ├── client/
+│   ├── api/
+│   │   └── scan.js             # Vercel serverless function
 │   ├── src/
 │   │   ├── api/
 │   │   │   ├── index.js        # Main API entry point
@@ -106,9 +124,20 @@ ProxyPhish/
 │   │   ├── App.jsx             # Main application
 │   │   └── index.css           # Global styles
 │   ├── .env.example            # Environment template
+│   ├── vercel.json             # Vercel configuration
 │   └── package.json
-└── server/                     # Future backend (not used in v1)
+└── server/                     # Experimental backend (not used in v1)
 ```
+
+---
+
+## Environment Variables
+
+| Variable                  | Location         | Description                                         |
+| ------------------------- | ---------------- | --------------------------------------------------- |
+| `VITE_ENV`                | `.env`           | Set to `local` for development, omit for production |
+| `VITE_VIRUSTOTAL_API_KEY` | `.env`           | API key for local development                       |
+| `VIRUSTOTAL_API_KEY`      | Vercel Dashboard | API key for production serverless function          |
 
 ---
 
@@ -120,7 +149,7 @@ VirusTotal free tier allows 4 requests per minute. The in-memory cache helps red
 
 ## Roadmap
 
-- [ ] Deploy backend for API key protection
+- [x] Serverless function for API key protection
 - [ ] Add URL history/bookmarks
 - [ ] Implement OpenAI-powered threat explanations
 - [ ] Add browser extension

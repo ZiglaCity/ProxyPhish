@@ -28,8 +28,8 @@ export default async function handler(req, res) {
 
         if (!submitResponse.ok) {
             const error = await submitResponse.json().catch(() => ({}));
-            return res.status(submitResponse.status).json({ 
-                error: error?.error?.message || 'Failed to submit URL' 
+            return res.status(submitResponse.status).json({
+                error: error?.error?.message || 'Failed to submit URL',
             });
         }
 
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
             `https://www.virustotal.com/api/v3/analyses/${analysisId}`,
             {
                 headers: { 'x-apikey': API_KEY },
-            }
+            },
         );
 
         if (!analysisResponse.ok) {
