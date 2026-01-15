@@ -29,18 +29,23 @@ function App() {
         fetch(`${BACKEND_URL}api/check-url`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ url })
+            body: JSON.stringify({ url }),
         })
-            .then(res => {
+            .then((res) => {
                 if (!res.ok) {
                     throw new Error(`Request failed with status ${res.status}`);
                 }
                 return res.json();
             })
-            .then(data => {
-                if (!data || !data?.data?.data?.attributes?.results || !data?.formatedData || data?.formatedData.length === 0) {
+            .then((data) => {
+                if (
+                    !data ||
+                    !data?.data?.data?.attributes?.results ||
+                    !data?.formatedData ||
+                    data?.formatedData.length === 0
+                ) {
                     toast.error('No analysis data found for this URL');
                     setSWR(true);
                     setHasResult(false);
@@ -52,7 +57,7 @@ function App() {
                 setHasResult(true);
                 setSWR(false);
             })
-            .catch(error => {
+            .catch((error) => {
                 toast.error(error.message || 'Failed to analyze URL');
                 setHasResult(false);
                 setSWR(false);
@@ -71,26 +76,32 @@ function App() {
                     style: {
                         background: '#101116',
                         color: '#fff',
-                        border: '1px solid #0abdc6'
+                        border: '1px solid #0abdc6',
                     },
                     success: {
                         iconTheme: {
                             primary: '#00ff41',
-                            secondary: '#101116'
-                        }
+                            secondary: '#101116',
+                        },
                     },
                     error: {
                         iconTheme: {
                             primary: '#ff2a6d',
-                            secondary: '#101116'
-                        }
-                    }
+                            secondary: '#101116',
+                        },
+                    },
                 }}
             />
             <NavBar />
             <SearchBox onSearch={Search} loading={loading} />
             {searchedWithoutResult && <NoResult />}
-            {loading ? <LoadingSpinner /> : hasResult ? <Result results={results} /> : <Info />}
+            {loading ? (
+                <LoadingSpinner />
+            ) : hasResult ? (
+                <Result results={results} />
+            ) : (
+                <Info />
+            )}
             <AboutSection />
         </>
     );
